@@ -1,0 +1,38 @@
+---
+title: "**Working with Tabular Data**"
+author: "**Sura, Sai Karthikeyan**"
+date: "**`r Sys.Date()`**"
+output:
+  html_document: default
+  pdf_document: default
+subtitle: "**Analysis of Wines**"
+---
+
+```{r echo = F}
+df.wines <- read.csv("https://s3.us-east-2.amazonaws.com/artificium.us/datasets/whitewines.csv", stringsAsFactors = F)
+```
+
+```{r echo = F}
+a <- nrow(df.wines)
+```
+
+```{r echo = F}
+b <- mean(df.wines$alcohol > 11) * 100
+```
+
+```{r echo = F}
+c <- max(df.wines$alcohol)
+```
+
+### **Analysis of Wines**
+
+There are a total of `r a` wines in this data set. `r round(b, 1)`% of the wines have an alcohol content over 11%. The highest alcohol content of any wine is `r c`%.
+
+The scatter plot below illustrates the correlation between alcohol and sugar content.
+
+```{r echo = F}
+plot(df.wines$residual.sugar, df.wines$alcohol, 
+     xlab = "Sugar", ylab = "Alcohol", 
+     main = "Sugar vs Alcohol Content")
+title(main = "Sugar vs Alcohol Content", col.main = "blue")
+```
